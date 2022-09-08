@@ -1,0 +1,175 @@
+---
+title: "Analysis of Crosby's Seasonal Statistics"
+author: "Saheba Tegally"
+date: '2022-09-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Introduction
+
+There is not a single person in this generation who is a fan of hockey and watches NHL games that has not heard the name Sidney Crosby at least once. Sidney Crosby is an ice hockey player who plays Centre and is the Captain of the Pittsburgh Penguins. Born in Cole Harbour, Nova Scotia, Canada, he was drafted first overall in the 2005 NHL Entry Draft by the Pittsburgh Penguins with a lot of hype around him as "The Next One". 
+
+That aside, Sidney Crosby is a very special player to me. I immigrated to Vancouver, Canada in early 2007 and I only caught some glimpse of hockey here and there. I was aware of the love Canadians had for the sport Hockey. There is no way I couldn't when Vancouver was home to an NHL hockey team as well. I liked the sport too, but was not deeply invested. Also, I had never watched any Olympic games before. Then the 2010 Winter Olympics took place. In Canada. And Vancouver of all places. It was my first time really experiencing the Olympic Games and to know that feeling of pride and joy when you watch the participants representing your country. Canada was already my home in my heart, so I was swept along with the festive mood that covered the entire Vancouver region during that period.
+
+I will never forget the moment when I was gripping my seats while watching the final game for the Gold medal between Canada and the United States. That moment when Sidney Crosby scored the game winning goal in overtime and I jumped out of my seat, screaming and celebrating in joy along with the Canadian players and fans on the screen.
+
+
+The goal of this project is simple - to look at Sidney Crosby's NHL career through the lens of data. 
+
+
+```{r load required libraries, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(stringr)
+
+```
+
+
+```{r Import data}
+games_reg = read.csv(file = "data/games_regular.csv", header = TRUE)
+games_playoffs = read.csv(file = "data/games_playoffs.csv", header = TRUE)
+
+```
+
+
+SELF-REMINDER:
+I need to see what the data tells me, so I know what the story really is. Only then, I can do a data story-telling.
+
+
+Things to do:
+Feature Engineering:
+
+- proportion of powerplay points out of total points.
+- points per game.
+- 
+
+
+```{r Clean data}
+# 
+nhl_games_reg <- games_reg %>% 
+                 dplyr::filter(team.name == "Pittsburgh Penguins") %>%
+                 dplyr::select(season:plusMinus) %>%
+                 dplyr::mutate(season = paste(str_sub(season,1,4), str_sub(season,5,-1), sep = '-'))
+  
+
+nhl_games_playoffs <- games_playoffs %>% 
+                      dplyr::filter(team.name == "Pittsburgh Penguins") %>%
+                      dplyr::select(season:blocked) %>%
+                      dplyr::mutate(season = paste(str_sub(season,1,4), str_sub(season,5,-1), sep = '-'))
+
+
+```
+
+
+
+## Regular Season Career Performance
+
+
+
+
+
+
+
+```{r}
+ggplot(data = nhl_games_reg) +
+  geom_col(aes(x = season, y = games)) +
+  guides(x = guide_axis(angle = 45))
+  
+```
+
+
+
+
+
+```{r}
+ggplot(data = nhl_games_reg) +
+  geom_col(aes(x = season, y = points, fill = "#ffb303")) +
+  geom_col(aes(x = season, y = assists, fill = "#000000")) +
+  guides(x = guide_axis(angle = 45)) +
+  labs(title = "",
+       x = "NHL Season", 
+       y = "Total points") +
+  scale_fill_identity(name = "Point Type",
+                      labels = c("Assists", "Goals"), 
+                      guide = "legend")
+
+
+```
+
+
+
+```{r}
+ggplot(data = nhl_games_reg) + 
+  geom_col(aes(x = season, y = points/games)) +
+  guides(x = guide_axis(angle = 45)) +
+  labs(title = "Points Per Game",
+       x = "NHL Season",
+       y = "Points Per Games (PPG)")
+
+```
+
+A goal is considered game winning when the team would win the game without scoring any more goals
+
+
+```{r }
+ggplot(data = nhl_games_reg) +
+  geom_col(aes(x = season, y = (gameWinningGoals/goals)*100)) +
+  guides(x = guide_axis(angle = 45)) +
+  labs(title = "Percentage of Game Wining Goals During the Regular Season",
+       subtitle = "",
+       x = "NHL Season",
+       y = "% of Game Winning Goals")
+```
+
+Sidney Crosby is a player who shows up during big moments and seals the win for his team by scoring the game winning goal. 
+
+
+This is one of the reasons he is the Captain and why he is such a valuable player. Scoring goals is always nice, but scoring them when the team needs it the most, in this case when victory is at stake, makes a skater akin to a hero to their team, coach and fans.
+
+
+
+```{r FaceOff Percentage Over time}
+
+ggplot(data = nhl_games_reg) +
+  geom_col(mapping = aes(x = season, y = faceOffPct)) +
+  labs(title = "FaceOff Percentage across Regular Seasons",
+       x = "NHL Season",
+       y = "FaceOff Percentage %") + 
+  guides(x = guide_axis(angle = 45)) 
+
+```
+
+
+```{r Distribution of FaceOff Percentage}
+
+
+```
+
+
+
+
+
+
+In Hockey, a player's Shooting Percentage is the percentage of their attempted shots that resulted in goals. For this calculation, a goal is any shot that sent the puck into the net, including empty net goals but not goals from a shootout. A shot attempt is any action that directs the puck towards the net, however shots blocked by a non-goalie player, shots that missed the net or hit the goal post, or shots in a shootout are not included. 
+
+
+
+```{r Shot Percentage Over time}
+
+ggplot(data = nhl_games_reg) +
+  geom_col(mapping = aes(x = season, y = shotPct)) +
+  labs(title = "Shot Percentage across Regular Seasons",
+       x = "NHL Season",
+       y = "Shot Percentage %") + 
+  guides(x = guide_axis(angle = 45)) 
+  
+
+```
+
+
