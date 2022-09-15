@@ -9,17 +9,13 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## Introduction
 
- 
-There probably is not probably is not a single person in this generation who is a fan of hockey and watches NHL games that has not heard of Sidney Crosby at least once. 
+There probably is not probably is not a single person in this generation who is a fan of hockey and watches NHL games that has not heard of Sidney Crosby at least once.
 
 Sidney Crosby is an ice hockey player who plays Centre and is the Captain of the Pittsburgh Penguins. Born in Cole Harbour, Nova Scotia, Canada, he was drafted first overall in the 2005 NHL Entry Draft by the Pittsburgh Penguins with a lot of hype around him as "The Next One".
 
-
-The goal of this project is to look at Sidney Crosby's NHL career through the lens of data. There are many other great hockey players out there and the point of this project is not to argue or emphasize the greatness of Sidney Crosby over other players. Thus, no comparison to any specific player will be made. 
-
+The goal of this project is to look at Sidney Crosby's NHL career through the lens of data. There are many other great hockey players out there and the point of this project is not to argue or emphasize the greatness of Sidney Crosby over other players. Thus, no comparison to any specific player will be made.
 
 ```{r load required libraries, message=FALSE}
 library(dplyr)
@@ -30,26 +26,19 @@ library(rmarkdown)
 
 ```
 
-
-
 ```{r Import data}
 games_reg = read.csv(file = "data/games_regular.csv", header = TRUE)
 games_playoffs = read.csv(file = "data/games_playoffs.csv", header = TRUE)
 
 ```
 
+SELF-REMINDER: I need to see what the data tells me, so I know what the story really is. Only then, I can do a data story-telling.
 
-SELF-REMINDER:
-I need to see what the data tells me, so I know what the story really is. Only then, I can do a data story-telling.
+Things to do: Feature Engineering:
 
-
-Things to do:
-Feature Engineering:
-
-- proportion of powerplay points out of total points.
-- points per game.
-- 
-
+-   proportion of powerplay points out of total points.
+-   points per game.
+-   
 
 ```{r Clean data}
 # 
@@ -71,10 +60,7 @@ Reg_Season <- games_reg %>%
 
 ```
 
-
-
 ## Regular Season Career Performance
-
 
 ```{r}
 ggplot(data = nhl_games_reg) +
@@ -82,10 +68,6 @@ ggplot(data = nhl_games_reg) +
   guides(x = guide_axis(angle = 45))
   
 ```
-
-
-
-
 
 ```{r}
 ggplot(data = nhl_games_reg) +
@@ -102,8 +84,6 @@ ggplot(data = nhl_games_reg) +
 
 ```
 
-
-
 ```{r}
 ggplot(data = nhl_games_reg) + 
   geom_col(aes(x = season, y = points/games)) +
@@ -116,7 +96,6 @@ ggplot(data = nhl_games_reg) +
 
 A goal is considered game winning when the team would win the game without scoring any more goals
 
-
 ```{r }
 ggplot(data = nhl_games_reg) +
   geom_col(aes(x = season, y = (gameWinningGoals/goals)*100)) +
@@ -127,12 +106,9 @@ ggplot(data = nhl_games_reg) +
        y = "% of Game Winning Goals")
 ```
 
-Sidney Crosby is a player who shows up during big moments and seals the win for his team by scoring the game winning goal. 
-
+Sidney Crosby is a player who shows up during big moments and seals the win for his team by scoring the game winning goal.
 
 This is one of the reasons he is the Captain and why he is such a valuable player. Scoring goals is always nice, but scoring them when the team needs it the most, in this case when victory is at stake, makes a skater akin to a hero to their team, coach and fans.
-
-
 
 ```{r FaceOff Percentage Over time}
 
@@ -145,14 +121,7 @@ ggplot(data = nhl_games_reg) +
 
 ```
 
-
-
-
-
-
-In Hockey, a player's Shooting Percentage is the percentage of their attempted shots that resulted in goals. For this calculation, a goal is any shot that sent the puck into the net, including empty net goals but not goals from a shootout. A shot attempt is any action that directs the puck towards the net, however shots blocked by a non-goalie player, shots that missed the net or hit the goal post, or shots in a shootout are not included. 
-
-
+In Hockey, a player's Shooting Percentage is the percentage of their attempted shots that resulted in goals. For this calculation, a goal is any shot that sent the puck into the net, including empty net goals but not goals from a shootout. A shot attempt is any action that directs the puck towards the net, however shots blocked by a non-goalie player, shots that missed the net or hit the goal post, or shots in a shootout are not included.
 
 ```{r Shot Percentage Over time}
 
@@ -165,5 +134,3 @@ ggplot(data = nhl_games_reg) +
   
 
 ```
-
-
