@@ -74,7 +74,7 @@ nhl_games_reg <- games_reg %>%
 
 The first thing we are going to look at is the number of games played by the player. There are 82 games in an NHL season and each Win counts as 2 points and an Overtime Loss counts as 1 point. The NHL is made up of the Eastern and Western Conference and each Conference is made up of 2 divisions. The Pittsburgh Penguins is part of the Metropolitan division in the Eastern Conference. For decades, the Eastern conference has been stronger and more competitive compared to its counterpart. Therefore, roughly 100 points, i.e. at least 50 Wins (ignoring Overtime losses) are needed to secure a playoff spot. Injuries are a common occurrence in the NHL with some players more injury prone than others. Thus, with the goal of making the playoffs a player needs to play at least `r(50/82)*100`% of the season to make a meaningful impact on the team.
 
-```{r}
+```{r fig.align='center'}
 nhl_games_reg %>%
   mutate(GamesPlayedPct = games/82) %>%
   mutate(cond = dplyr::case_when(GamesPlayedPct >= 50/82 ~ "darkgreen",
