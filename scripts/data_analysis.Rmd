@@ -169,7 +169,7 @@ nhl_games_reg %>%
        caption = "Data Source: nhl.com",
        tag = "Fig 1.4") +
   theme_classic() +
-  theme(legend.position = "top")
+  theme(legend.position = "bottom")
   
   
 ```
@@ -204,13 +204,22 @@ Plus-Minus
 nhl_games_reg %>%
   mutate(cond = case_when(plusMinus < 0 ~ "darkred",
                           TRUE ~ '#414743')) %>%
-  ggplot(aes(x = season, y = plusMinus, fill = cond)) +
+  ggplot(aes(x = season, 
+             y = plusMinus,
+             fill = cond, 
+             label = plusMinus)) +
   geom_col() +
   scale_fill_identity() +
+  scale_y_continuous(labels = NULL, breaks = NULL) +
+  geom_text(nudge_y = -1,
+            size = 3,
+            color = "#e89f0e",
+            fontface = "bold") +
   guides(x = guide_axis(angle = 45)) +
   labs(x = NULL,
-       y = "Plus-Minus",
+       y = NULL,
        title = "Plus-Minus per Season",
+       subtitle = "",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.6")+
   theme_minimal()
@@ -222,26 +231,41 @@ nhl_games_reg %>%
 Powerplay Points
 
 ```{r fig.align='center'}
-ggplot(data = nhl_games_reg) +
-  geom_col(aes(x = season, y = powerPlayPoints, fill = "#414743")) +
-  geom_col(aes(x = season, y = powerPlayGoals, fill = "#e89f0e")) +
-  scale_fill_identity(name = "PP Point",
-                      labels = c("PP Assists","PP Goals"),
-                      guide = "legend") +
+nhl_games_reg %>%
+  mutate(powerPlayAssists = powerPlayPoints - powerPlayGoals) %>%
+  pivot_longer(cols = c("powerPlayAssists","powerPlayGoals"),
+               names_to = "PP_Point_from",
+               values_to = "PP_Point") %>%
+  ggplot(aes(x = season, 
+             y = PP_Point,
+             fill = as.factor(PP_Point_from),
+             label = PP_Point)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c('#414743',"#e89f0e"),
+                    name = "PowerPlay Point") +
+  geom_text(position = position_stack(vjust = 0.5),
+            size = 2.6,
+            color = "white",
+            fontface = "bold") +
   guides(x = guide_axis(angle = 45)) +
   labs(x = NULL,
        y = "Total PowerPlay (PP) Points",
        title = "Total PowerPlay (PP) Points per Season",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.7") +
-  theme_classic()
+  theme_classic() +
+  theme(legend.position = "bottom")
+
+```
+
+```{r fig.align='center'}
 
 ```
 
 
-
 ## Conclusion
 
+In a nutshell, the figures and analysis show that Sidney Crosby is a well-balanced player. His continued excellence in the NHL can largely be attributed to his consistency. Aside from his injuries impeding him from playing games, there is not once season where one can say he struggled.  
 
 
 
