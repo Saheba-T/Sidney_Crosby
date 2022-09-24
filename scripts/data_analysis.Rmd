@@ -140,7 +140,7 @@ ggplot(data = nhl_games_reg) +
   labs(x = NULL,
        y = "Points Per Games (PPG)",
        title = "Points Per Game per Season",
-       subtitle = "Crosby recorded a point per game pace for 17 straight seasons",
+       subtitle = "Crosby recorded at least a point per game pace for 17 straight seasons",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.3") +
   theme_classic()
@@ -198,9 +198,9 @@ ggplot(data = nhl_games_reg) +
 The lowest faceoff percentage he recorded was 45.49% during his first season. He has considerably improved since and posted an average faceoff win percentage of `rmean(tail(nhl_games_reg$faceOffPct,16))`%. After the 2005-2006 season, his faceoff percentage has gone up and down but mostly stayed over 50%.
 
 
-Plus-Minus
+Plus-Minus measures a player's goal differential. For the players on the ice, this statistic is increased by 1 when a goal is scored for the team and decreased by 1 when a goal is scored against the team. Thus, the Plus-Minus is a statistic used to judge how defensively responsible a player is on the team. 
 
-```{r}
+```{r fig.align='center'}
 nhl_games_reg %>%
   mutate(cond = case_when(plusMinus < 0 ~ "darkred",
                           TRUE ~ '#414743')) %>%
@@ -219,7 +219,7 @@ nhl_games_reg %>%
   labs(x = NULL,
        y = NULL,
        title = "Plus-Minus per Season",
-       subtitle = "",
+       subtitle = "Overall a very responsible player defensively",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.6")+
   theme_minimal()
@@ -259,6 +259,8 @@ nhl_games_reg %>%
 ```
 
 ```{r fig.align='center'}
+
+
 
 ```
 
