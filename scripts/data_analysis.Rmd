@@ -198,7 +198,7 @@ ggplot(data = nhl_games_reg) +
 The lowest faceoff percentage he recorded was 45.49% during his first season. He has considerably improved since and posted an average faceoff win percentage of `rmean(tail(nhl_games_reg$faceOffPct,16))`%. After the 2005-2006 season, his faceoff percentage has gone up and down but mostly stayed over 50%.
 
 
-Plus-Minus measures a player's goal differential. For the players on the ice, this statistic is increased by 1 when a goal is scored for the team and decreased by 1 when a goal is scored against the team. Thus, the Plus-Minus is a statistic used to judge how defensively responsible a player is on the team. 
+Plus-Minus measures a player's goal differential. For the players on the ice, this statistic is increased by 1 when a goal is scored for the team and decreased by 1 when a goal is scored against the team, excluding powerplay goals. Thus, the Plus-Minus is a statistic mostly used to judge how defensively responsible a player is on the team at even strength. 
 
 ```{r fig.align='center'}
 nhl_games_reg %>%
@@ -219,13 +219,13 @@ nhl_games_reg %>%
   labs(x = NULL,
        y = NULL,
        title = "Plus-Minus per Season",
-       subtitle = "Overall a very responsible player defensively",
+       subtitle = "A defensively-responsible player, only 2 ouf 17 seasons with a negative plus-minus",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.6")+
   theme_minimal()
 
 ```
-
+The bar plot in Figure 1.6 above shows that Crosby recorded a negative plus-minus only 2 times out of 17 seasons. He has an average `rmean(nhl_games_reg$plusMinus)` plus-minus thus far. This means overall he has mostly been on the ice for more goals scored than against.
 
 
 Powerplay Points
