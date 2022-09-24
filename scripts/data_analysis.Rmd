@@ -198,7 +198,7 @@ ggplot(data = nhl_games_reg) +
 The lowest faceoff percentage he recorded was 45.49% during his first season. He has considerably improved since and posted an average faceoff win percentage of `rmean(tail(nhl_games_reg$faceOffPct,16))`%. After the 2005-2006 season, his faceoff percentage has gone up and down but mostly stayed over 50%.
 
 
-Plus-Minus measures a player's goal differential. For the players on the ice, this statistic is increased by 1 when a goal is scored for the team and decreased by 1 when a goal is scored against the team, excluding powerplay goals. Thus, the Plus-Minus is a statistic mostly used to judge how defensively responsible a player is on the team at even strength. 
+Plus-Minus measures a player's goal differential. For the players on the ice, this statistic is increased by 1 when a goal is scored for the team and decreased by 1 when a goal is scored against the team, excluding power play goals. Thus, Plus-Minus is a statistic mostly used to judge how defensively responsible a player is on the team at even strength. 
 
 ```{r fig.align='center'}
 nhl_games_reg %>%
@@ -228,7 +228,9 @@ nhl_games_reg %>%
 The bar plot in Figure 1.6 above shows that Crosby recorded a negative plus-minus only 2 times out of 17 seasons. He has an average `rmean(nhl_games_reg$plusMinus)` plus-minus thus far. This means overall he has mostly been on the ice for more goals scored than against.
 
 
-Powerplay Points
+Power play points are points accumulated by a player for any assist or goal earned by the player on the power play. In ice hockey, power play is the period of play when a team has a numerical advantage due to the other team taking a penalty and the penalized getting their numbers reduced. 
+
+In hockey, at even strength there are only 5 skaters allowed on the ice with the goalie. Thus, a team can never have less than 3 skaters on the ice. Depending on the severity of the penalty taken by the other team, a team may have either a 1-man or 2-man advantage. Furthermore, power play runs for a minimum of 2 minutes and a maximum of 5 minutes.
 
 ```{r fig.align='center'}
 nhl_games_reg %>%
@@ -242,15 +244,15 @@ nhl_games_reg %>%
              label = PP_Point)) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c('#414743',"#e89f0e"),
-                    name = "PowerPlay Point") +
+                    name = "Power Play Point") +
   geom_text(position = position_stack(vjust = 0.5),
             size = 2.6,
             color = "white",
             fontface = "bold") +
   guides(x = guide_axis(angle = 45)) +
   labs(x = NULL,
-       y = "Total PowerPlay (PP) Points",
-       title = "Total PowerPlay (PP) Points per Season",
+       y = "Total Power Play (PP) Points",
+       title = "Total Power Play Points per Season",
        caption = "Data Source: nhl.com",
        tag = "Fig 1.7") +
   theme_classic() +
