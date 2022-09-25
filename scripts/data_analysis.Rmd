@@ -42,6 +42,7 @@ library(lubridate)
 library(stringr)
 library(rmarkdown)
 library(here)
+library(patchwork)
 
 ```
 
@@ -233,7 +234,7 @@ Power play points are points accumulated by a player for any assist or goal earn
 In hockey, at even strength there are only 5 skaters allowed on the ice with the goalie. Thus, a team can never have less than 3 skaters on the ice. Depending on the severity of the penalty taken by the other team, a team may have either a 1-man or 2-man advantage. Furthermore, power play runs for a minimum of 2 minutes and a maximum of 5 minutes.
 
 ```{r fig.align='center'}
-nhl_games_reg %>%
+p1 <- nhl_games_reg %>%
   mutate(powerPlayAssists = powerPlayPoints - powerPlayGoals) %>%
   pivot_longer(cols = c("powerPlayAssists","powerPlayGoals"),
                names_to = "PP_Point_from",
@@ -250,27 +251,39 @@ nhl_games_reg %>%
             color = "white",
             fontface = "bold") +
   guides(x = guide_axis(angle = 45)) +
-  labs(x = NULL,
-       y = "Total Power Play (PP) Points",
-       title = "Total Power Play Points per Season",
-       caption = "Data Source: nhl.com",
-       tag = "Fig 1.7") +
-  theme_classic() +
-  theme(legend.position = "bottom")
+  labs(x = NULL, y = "PP Points") +
+  theme(legend.position = "top")
+
+
+p2 <- nhl_games_reg %>%
+  mutate(PP_time = (as.numeric(str_sub(powerPlayTimeOnIce,1,-4)) + 
+           as.numeric(str_sub(powerPlayTimeOnIce,-2,-1))/60)/60) %>%
+  mutate(season = as.numeric(str_sub(season,1,4))) %>%
+  ggplot(aes(x = season, y = PP_time)) +
+  geom_line() +
+  labs(x = "Season", y = "PP Time (in hours)") 
+
+
+p3 <- nhl_games_reg %>%
+  mutate(season = as.numeric(str_sub(season,1,4))) %>%
+  ggplot(aes(x = season, y = games)) +
+  geom_line() +
+  labs(x = "Season", y = "Games Played") 
+
+p123 <- p1 / (p2 | p3)
+p123 + plot_annotation(title = "Performance on the Power Play (PP) across 17 seasons",
+                       subtitle = "The trend in power play points earned is directly reflected by the number of games played",
+                       tag_levels = "I",
+                       caption = "Data Source: nhl.com",
+                       theme = theme_classic())
 
 ```
-
-```{r fig.align='center'}
-
-
-
-```
+In the figure above, we can see that all three subplots follow approximately the same trend. In other words, the trend in the number of power play time is reflected by the number of games played per season. In turn, the trend in the number of power play points earned is reflected by number of power play time. In conclusion, the trend in the number of power play points earned per season is the same as the number of games played per season. 
 
 
 ## Conclusion
 
-In a nutshell, the figures and analysis show that Sidney Crosby is a well-balanced player. His continued excellence in the NHL can largely be attributed to his consistency. Aside from his injuries impeding him from playing games, there is not once season where one can say he struggled.  
-
+In summary, the figures and analyses show that Sidney Crosby is a well-rounded player. His continued excellence in the NHL can largely be attributed to his general consistency in several aspects of the game. If there is a statistic where he performed worse than the previous season(s), then he tends to improve himself to his usual form again even if it takes a couple of seasons to make it happen. 
 
 
 
