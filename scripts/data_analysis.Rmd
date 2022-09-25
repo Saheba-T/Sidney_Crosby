@@ -1,5 +1,5 @@
 ---
-title: "Data Analysis of Sidney Crosby's NHL Career (2005-Present)"
+title: "Data Strorytelling of Sidney Crosby's NHL Career (2005-Present)"
 author: "Saheba Tegally"
 date: '2022-09-03'
 output: github_document
