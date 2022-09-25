@@ -1,4 +1,4 @@
-Data Analysis of Sidney Crosby’s NHL Career (2005-Present)
+Data Strorytelling of Sidney Crosby’s NHL Career (2005-Present)
 ================
 Saheba Tegally
 2022-09-03

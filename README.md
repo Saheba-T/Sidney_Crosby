@@ -1,2 +1,2 @@
-# Data Storytelling of Sidney Crosby's NHL Career (2005-2022)
+# Data Storytelling of Sidney Crosby's NHL Career (2005-Present)
 
