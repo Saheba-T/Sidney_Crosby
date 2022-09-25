@@ -234,6 +234,7 @@ Power play points are points accumulated by a player for any assist or goal earn
 In hockey, at even strength there are only 5 skaters allowed on the ice with the goalie. Thus, a team can never have less than 3 skaters on the ice. Depending on the severity of the penalty taken by the other team, a team may have either a 1-man or 2-man advantage. Furthermore, power play runs for a minimum of 2 minutes and a maximum of 5 minutes.
 
 ```{r fig.align='center'}
+#subplot showing power play points for each category (assist and goal)
 p1 <- nhl_games_reg %>%
   mutate(powerPlayAssists = powerPlayPoints - powerPlayGoals) %>%
   pivot_longer(cols = c("powerPlayAssists","powerPlayGoals"),
@@ -254,23 +255,25 @@ p1 <- nhl_games_reg %>%
   labs(x = NULL, y = "PP Points") +
   theme(legend.position = "top")
 
-
+#subplot showing amount of power play time across the seasons
 p2 <- nhl_games_reg %>%
   mutate(PP_time = (as.numeric(str_sub(powerPlayTimeOnIce,1,-4)) + 
-           as.numeric(str_sub(powerPlayTimeOnIce,-2,-1))/60)/60) %>%
+           as.numeric(str_sub(powerPlayTimeOnIce,-2,-1))/60)) %>%
   mutate(season = as.numeric(str_sub(season,1,4))) %>%
   ggplot(aes(x = season, y = PP_time)) +
   geom_line() +
-  labs(x = "Season", y = "PP Time (in hours)") 
+  labs(x = "Season", y = "PP Time (in mins)") 
 
-
+# subplot for showing # of games per season
 p3 <- nhl_games_reg %>%
   mutate(season = as.numeric(str_sub(season,1,4))) %>%
   ggplot(aes(x = season, y = games)) +
   geom_line() +
   labs(x = "Season", y = "Games Played") 
 
+#arrange the subplots
 p123 <- p1 / (p2 | p3)
+# plot and annotate the subplots
 p123 + plot_annotation(title = "Performance on the Power Play (PP) across 17 seasons",
                        subtitle = "The trend in power play points earned is directly reflected by the number of games played",
                        tag_levels = "I",
