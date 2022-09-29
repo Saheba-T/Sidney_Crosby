@@ -176,7 +176,7 @@ nhl_games_reg %>%
 
 The plot in Figure 1.4 shows that Crosby is more of a play maker than a goal scorer. The majority of his points comes from assists. On average, he has about 52 assists and 30 goals per season. He recorded both his lowest number of assists and goals in the 2011-2012 season when he only played 22 games.  
 
-Faceoff win Percentage is the percentage of faceoffs that a player has won. Winning faceoffs is a very important part of winning NHL games because it most often leads to the team gaining puck possession, which in turn often leads to goals. This importance is even more highlighted when the team is on the power play.
+Faceoff win percentage is the percentage of faceoffs that a player has won. Winning faceoffs is a very important part of winning NHL games because it most often leads to the team gaining puck possession, which in turn often leads to goals. This importance is even more highlighted when the team is on the power play.
 
 ```{r Faceoff Win Percentage Over time, fig.align='center'}
 
@@ -225,7 +225,8 @@ nhl_games_reg %>%
   theme_minimal()
 
 ```
-The bar plot in Figure 1.6 above shows that Crosby recorded a negative plus-minus only 2 times out of 17 seasons. He has an average of `r round(mean(nhl_games_reg$plusMinus),2)` plus-minus thus far. This means overall he has mostly been on the ice for more goals scored than against.   
+
+The bar plot in Figure 1.6 above shows that Crosby recorded a negative plus-minus only 2 times out of 17 seasons. He has an average of `r round(mean(nhl_games_reg$plusMinus),2)` plus-minus thus far. This means overall he has mostly been on the ice for more goals scored than against.  
 
 Power play points are points accumulated by a player for any assist or goal earned by the player on the power play. In ice hockey, power play is the period of play when a team has a numerical advantage due to the other team taking a penalty and the penalized getting their numbers reduced.  
 

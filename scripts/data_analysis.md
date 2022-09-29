@@ -11,12 +11,12 @@ career starting 2005 to the latest 2021-2022 NHL season.
 ### Who is Sidney Crosby?
 
 Sidney Crosby is a Canadian ice hockey player who plays Centre in the
-National Hockey League (NHL) and the Captain of the Pittsburgh Penguins.
-Born in Nova Scotia, Canada, he was drafted First overall in the 2005
-NHL Entry Draft by the Pittsburgh Penguins with a lot of hype around him
-as “The Next One”. He has many achievements and accolades to his name.
-Most notably, he is a three times NHL Stanley Cup Champion and two times
-Olympic Gold Winner.
+National Hockey League (NHL) and is the Captain of the Pittsburgh
+Penguins. Born in Nova Scotia, Canada, he was drafted First overall in
+the 2005 NHL Entry Draft by the Pittsburgh Penguins with a lot of hype
+around him as “The Next One”. He has many achievements and accolades to
+his name. Most notably, he is a three times NHL Stanley Cup Champion and
+two times Olympic Gold Winner.
 
 ### Why I chose Sidney Crosby?
 
@@ -81,8 +81,8 @@ in the Eastern Conference.
 
 For decades, the Eastern conference has been stronger and more
 competitive compared to its counterpart. Therefore, roughly 100 points,
-i.e. at least 50 Wins (ignoring Overtime losses) are needed to secure a
-playoff spot. Injuries are a common occurrence in the NHL with some
+i.e., at least 50 Wins (ignoring Overtime losses), are needed to secure
+a playoff spot. Injuries are a common occurrence in the NHL with some
 players more injury prone than others. Thus, with the goal of making the
 playoffs a player needs to play at least 60.98% of the season to make a
 meaningful impact on the team.
@@ -115,19 +115,19 @@ nhl_games_reg %>%
 
 <img src="data_analysis_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
-The plot above shows that Crosby’s NHL career has been quite injury
-riddled. Out of 17 seasons, he played all 82 games only once during the
-2017-2018 NHL season. However, he played more than 50 games for 13
-seasons and Of those 13 seasons, the plot above shows that for 10 of
-them he played more than 90% of the season. That means, despite his
+The plot in figure 1.1 shows that Crosby’s NHL career has been quite
+injury riddled. Out of 17 seasons, he played all 82 games only once
+during the 2017-2018 NHL season. However, he played more than 50 games
+for 13 seasons and of those 13 seasons, the plot also shows that for 10
+of them he played more than 90% of the season. That means, despite his
 injuries he has been mostly available to play and make a meaningful
 impact on the team.
 
 The next thing we are going to look at is the player’s points
 production. Hockey players get points for equally scoring a goal or
 getting an assist on the play that lead to a goal. A player can have a
-‘lucky’ season and put up a lot of points. Good players on the other
-hand produce a lot of points consistently on a regular basis.
+‘lucky’ season and put up a lot of points. Good players, on the other
+hand, produce a lot of points consistently.
 
 ``` r
 nhl_games_reg %>%
@@ -149,7 +149,7 @@ nhl_games_reg %>%
 
 <img src="data_analysis_files/figure-gfm/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
-Not surprisingly, We see that the plot above in Figure 1.2 looks
+Not surprisingly, we see that the plot above in Figure 1.2 looks
 strikingly similar to the plot in Figure 1.1. The total number of points
 Crosby earned by the end of each season is reflected by the number of
 games he managed to play. An interesting observation is despite playing
@@ -157,7 +157,7 @@ all 82 games in the 2017-2018 season, he had the same total number of
 points as the previous season and less points than the next season when
 he played less games in both.
 
-Now we are going to look at the number of points scored per game pace
+Now we are going to look at the number of points scored per game pace,
 which is a better metric to use than the total number of points. It
 gives a clearer idea of the player’s productivity and consistency as it
 takes the number of games played into account.
@@ -214,17 +214,17 @@ nhl_games_reg %>%
 
 <img src="data_analysis_files/figure-gfm/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
-The plot in Figure 1.4 shows that Crosby is a more of a playmaker than a
+The plot in Figure 1.4 shows that Crosby is more of a play maker than a
 goal scorer. The majority of his points comes from assists. On average,
 he has about 52 assists and 30 goals per season. He recorded both his
 lowest number of assists and goals in the 2011-2012 season when he only
 played 22 games.
 
-Faceoff Win Percentage is the percentage of faceoffs that a player has
-won. Winning faceoffs is a very important part of winning NHL games.
-This is because winning faceoffs most often leads to the team gaining
-puck possession which in turn often leads to goals. This importance is
-even more prominent when the team is on the power play.
+Faceoff win percentage is the percentage of faceoffs that a player has
+won. Winning faceoffs is a very important part of winning NHL games
+because it most often leads to the team gaining puck possession, which
+in turn often leads to goals. This importance is even more highlighted
+when the team is on the power play.
 
 ``` r
 ggplot(data = nhl_games_reg) +
@@ -281,8 +281,9 @@ nhl_games_reg %>%
 ```
 
 <img src="data_analysis_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+
 The bar plot in Figure 1.6 above shows that Crosby recorded a negative
-plus-minus only 2 times out of 17 seasons. He has an average 11.88
+plus-minus only 2 times out of 17 seasons. He has an average of 11.88
 plus-minus thus far. This means overall he has mostly been on the ice
 for more goals scored than against.
 
@@ -292,11 +293,11 @@ is the period of play when a team has a numerical advantage due to the
 other team taking a penalty and the penalized getting their numbers
 reduced.
 
-In hockey, at even strength there are only 5 skaters allowed on the ice
-with the goalie. Thus, a team can never have less than 3 skaters on the
-ice. Depending on the severity of the penalty taken by the other team, a
-team may have either a 1-man or 2-man advantage. Furthermore, power play
-runs for a minimum of 2 minutes and a maximum of 5 minutes.
+In ice hockey, at even strength there are only 5 skaters allowed on the
+ice with the goalie. Thus, a team can never have less than 3 skaters on
+the ice. Depending on the severity of the penalty taken by the other
+team, a team may have either a 1-man or 2-man advantage. Furthermore,
+power play runs for a minimum of 2 minutes and a maximum of 5 minutes.
 
 ``` r
 #subplot showing power play points for each category (assist and goal)
@@ -354,12 +355,12 @@ p123 +
 <img src="data_analysis_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 In the figure above, we can see that all three subplots follow
-approximately the same trend. In other words, the trend in the number of
-power play time is reflected by the number of games played per season.
-In turn, the trend in the number of power play points earned is
-reflected by number of power play time. In conclusion, the trend in the
-number of power play points earned per season is the same as the number
-of games played per season.
+approximately the same trend. The trend in the number of power play
+points earned is reflected by number of power play time. In turn, the
+trend in the number of power play time is reflected by the number of
+games played per season. Thus, we can conclude that the trend in the
+number of power play points earned per season is the similar to the
+number of games played per season.
 
 ## Conclusion
 
